@@ -48,7 +48,7 @@ const fileFilter = (req, file, cb) => {
 app.set('view engine', 'ejs');//to set the template we are going to use is ejs
 app.set('views', 'views');//to set the default directory of templates is views folder
 
-
+const shopRoutes=require('./routes/shop');
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 app.use(bodyParser.urlencoded({ extended: false }));
