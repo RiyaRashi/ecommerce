@@ -10,13 +10,12 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);//upar walla
 const User = require('./models/user');
 const csrf = require('csurf');
-//const helmet=require('helmet');
-//const compression=require('compression');
+
 const MONGODB_URI = "mongodb://abc:123@cluster0-shard-00-00.1hcdx.mongodb.net:27017,cluster0-shard-00-01.1hcdx.mongodb.net:27017,cluster0-shard-00-02.1hcdx.mongodb.net:27017/shop?ssl=true&replicaSet=atlas-5tm0i2-shard-0&authSource=admin&retryWrites=true&w=majority";
 //const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-shard-00-00.1hcdx.mongodb.net:27017,cluster0-shard-00-01.1hcdx.mongodb.net:27017,cluster0-shard-00-02.1hcdx.mongodb.net:27017/${process.env.MONGO_DEFAULT_USER}?ssl=true&replicaSet=atlas-5tm0i2-shard-0&authSource=admin&retryWrites=true&w=majority`;
 const flash = require('connect-flash');
 const multer = require('multer');
-const morgan = require('morgan');//to make login easy
+
 const passport = require('passport');
 const findOrCreate = require('mongoose-findorcreate');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -49,12 +48,7 @@ const fileFilter = (req, file, cb) => {
 app.set('view engine', 'ejs');//to set the template we are going to use is ejs
 app.set('views', 'views');//to set the default directory of templates is views folder
 
-// const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'})
-
-// app.use(helmet());
-// app.use(compression());//for reducing size(except imagefiles)
-// app.use(morgan('combined',{stream:accessLogStream}));
-const shopRoutes = require('./routes/shop');
+/
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 app.use(bodyParser.urlencoded({ extended: false }));
