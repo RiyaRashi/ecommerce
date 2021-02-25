@@ -1,0 +1,68 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/form.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <center>
+                    <% if (errorMessage){%>
+                        <div class="user-message user-message-error">
+                            <%= errorMessage %>
+                        </div>
+                        <%}%>
+                            <div class="form">
+                                <form class="product-form" action="/signup" method="POST" novalidate>
+                                    <h1 class="headform">
+                                        signup
+                                    </h1>
+                                    <div>
+                                        <i> <label class="title">email:&ensp;</label></i>
+                                        <input class="<%= validationErrors.find(e=> e.param==='email')?'invalid': '' %>"
+                                            type="email" name="email" id="email" value="<%= oldInput.email %>">
+
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <i> <label>password:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e=> e.param==='password')?'invalid': '' %>"
+                                            type="password" name="password" id="password"
+                                            value="<%= oldInput.password %>">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <i> <label>confirm password:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e=> e.param==='confirmPassword')?'invalid': '' %>"
+                                            type="password" name="confirmPassword" id="confirmPassword"
+                                            value="<%= oldInput.confirmPassword %>">
+                                    </div>
+                                    <br />
+                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn btn-lg btn-success " type="submit"><i class="fa fa-user"
+                                            aria-hidden="true"> </i> signup</button>
+                            </div>
+                            <div class="separator">OR</div><br>
+
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <a class="btn btn-block btn-social btn-google" href="/auth/google"
+                                            role="button">
+                                            <i class="fab fa-google"></i>
+                                            Sign Up with Google
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                </center>
+
+                </form>
+            </main>
+            <%- include('../includes/end.ejs') %>
+                <!-- e.aprams equal hoga email ke it means ki wo uss validationarray mei hai vid 12 validation -->

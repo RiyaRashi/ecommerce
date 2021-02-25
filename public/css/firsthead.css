@@ -1,0 +1,25 @@
+.headfirst {
+    color: white;
+    text-transform: uppercase;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 35px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgb(230, 6, 6,1), rgb(216, 23, 23,1), rgb(204, 50, 76,1));
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @keyframes animate {
+    0% {
+      background-position: -500%;
+    }
+  
+    100% {
+      background-position: 500%;
+    }
+  }

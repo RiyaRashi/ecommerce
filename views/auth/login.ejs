@@ -1,0 +1,88 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/form.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <center>
+                    <% if (errorMessage){%>
+                        <div class="user-message user-message-error">
+                            <%= errorMessage %>
+                        </div>
+                        <%}%>
+                            <div class="form">
+                                <form class="product-form" action="/login" method="POST">
+                                    <h1 class="headform">
+                                        login
+                                    </h1>
+                                    <div>
+                                        <i> <label class="title">email:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                                            type="email" name="email" id="email" value="<%= oldInput.email %>">
+
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <i> <label>password:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                                            type="password" name="password" id="password"
+                                            value="<%= oldInput.password %>">
+                                    </div>
+
+
+                                    <!-- <div>
+                        <i> <label class="title">email:&ensp;</label></i>
+                        <input 
+                        class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                         type="email" name="email" id="email" value="<%= oldInput.email %>">
+                  
+                    </div>
+                    <br>
+                    <div>
+
+                        <i> <label>password:&ensp;</label></i>
+                        <input 
+                        class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+
+                        type="password" name="password" id="password" value="<%= oldInput.password %>" >
+                    </div> -->
+                                    <br>
+
+
+
+
+                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                    <button class="btn btn-lg btn-success " type="submit"><i class="fa fa-user"
+                                            aria-hidden="true"> </i> login</button>
+                                    <div class='centered reset'>
+                                        <a href='/reset'>reset password</a>
+                                    </div>
+
+                            </div>
+                            <div class="separator">OR</div><br>
+
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"> -->
+
+                                        <a class="btn btn-block btn-social btn-google" href="/auth/google"
+                                            role="button">
+                                            <i class="fab fa-google"></i>
+                                            Sign in with Google
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                </center>
+                </form>
+            </main>
+            <%- include('../includes/end.ejs') %>

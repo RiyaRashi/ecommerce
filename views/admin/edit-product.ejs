@@ -1,0 +1,69 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/form.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <center>
+                    <% if (errorMessage){%>
+                        <div class="user-message user-message-error">
+                            <%= errorMessage %>
+                        </div>
+                        <%}%>
+                            <div class="form">
+                                <form class="product-form"
+                                    action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>"
+                                    method="POST" enctype="multipart/form-data">
+                                    <h1 class="headform">
+                                        Product Details
+                                    </h1>
+                                    <div>
+                                        <i> <label class="title">Title:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>"
+                                            type="text" name="title" id="title"
+                                            value="<% if (editing || hasError ) { %><%= product.title %><% } %>">
+
+                                    </div>
+                                    <br>
+
+                                    <div>
+                                        <i> <label>Image:&ensp;</label></i>
+                                        <input type="file" name="image" id="image" />
+                                    </div>
+
+                                    <br>
+                                    <div>
+                                        <i> <label for="price">Price:&ensp;</label></i>
+                                        <input
+                                            class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>"
+                                            type="number" name="price" id="price" step="0.01"
+                                            value="<% if (editing || hasError) { %><%= product.price %><% } %>">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <i><label for="desc">Desc:&ensp;</label></i>
+                                        <textarea
+                                            class="<%= validationErrors.find(e => e.param === 'description') ? 'invalid' : '' %>"
+                                            name="description" id="description"
+                                            rows="5"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
+                                    </div>
+                                    <br>
+                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                    <% if (editing) { %>
+                                        <input type="hidden" value="<%= product._id %>" name="productId">
+                                        <!-- //req.params.productId ke liye getedit walemei-->
+                                        <% } %>
+
+                                            <button class="btn btn-lg btn-success" type="submit">
+                                                <% if (editing) { %>Update Product<% } else { %>Add Product<% } %>
+                                            </button>
+                            </div>
+                </center>
+
+                </form>
+            </main>
+            <%- include('../includes/end.ejs') %>
